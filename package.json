@@ -1,0 +1,22 @@
+{
+  "name": "wdio-realworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wdio/cli": "^7.24.0"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^7.24.0",
+    "@wdio/mocha-framework": "^7.24.0",
+    "@wdio/spec-reporter": "^7.24.0",
+    "chromedriver": "^105.0.0",
+    "wdio-chromedriver-service": "^7.3.2"
+  }
+}
