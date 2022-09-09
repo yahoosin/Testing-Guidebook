@@ -1,8 +1,6 @@
-function login(email, password) {
-    $('input[type="email"]').setValue(email);
-    $('input[type="password"]').setValue(password);
-    $('button*=Sign in').click();
-    }    
+const Auth = require('../pageObjects/Auth.page');
+
+const auth = new Auth();
 
 describe('Login Page', function () {
     beforeEach(function () {
@@ -10,20 +8,18 @@ describe('Login Page', function () {
     });
 
     it('should let you log in', function () {
-        login('demo@learnwebdriverio.com', 'wdiodemo');
-        $('button*=Sign in').waitForExist({ reverse: true });
-        expect($('.error-messages li')).not.toBeExisting();
+    auth.login('demo@learnwebdriverio.com', 'wdiodemo');
+    expect(auth.$errorMessages).not.toBeExisting();
     });
-    
 
     it('should error with a missing username', function () {
-        login('', 'wdiodemo');
-        expect($('.error-messages li')).toHaveText(`email can't be blank`);
-        });        
+    auth.login('', 'wdiodemo');
+    expect(auth.$errorMessages).toHaveText(`email can't be blank`);
+    });
 
     it('should error with a missing password', function () {
-        login('demo@learnwebdriverio.com', '');
-        expect($('.error-messages li')).toHaveText(`password can't be blank`);
-        });
+    auth.login('demo@learnwebdriverio.com', '');
+    expect(auth.$errorMessages).toHaveText(`password can't be blank`);
+     });      
 
 });
