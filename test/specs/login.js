@@ -12,7 +12,7 @@ describe('Login Page', function () {
     expect(auth.$errorMessages).not.toBeExisting();
     });
 
-    it('should error with a missing username', function () {
+    it.only('should error with a missing username', function () {
     auth.login('', 'wdiodemo');
     expect(auth.$errorMessages).toHaveText(`email can't be blank`);
     });
