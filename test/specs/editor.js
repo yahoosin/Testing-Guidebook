@@ -20,6 +20,28 @@ describe('Post Editor', function () {
     editor.load();
     });
 
+    describe('"Unsaved Changes" alerts', function () {
+        beforeEach(function () {
+            editor.$title.setValue('Unsaved Change');
+        });
+
+        it('should alert you when using browser navigation', function () {
+            // try refreshing the page
+            browser.refresh();
+            // validate alert is showing
+            expect(() => browser.acceptAlert()).not.toThrow();
+        });
+
+        it('should warn you when trying to change URL', function () {
+            // try going to the homepage
+            $('=Home').click();
+            const alertText = browser.getAlertText();
+            //expect(alertText).toEqual('Do you really want to leave? You have unsaved changes!');
+            //accept the alert to avoid it from preventing further tests from executing
+            browser.acceptAlert();
+        });
+    });
+
     it('should load page properly', function () {
         expect(browser).toHaveUrl(editor.url.href);
         expect(editor.$title).toExist();
