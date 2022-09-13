@@ -1,14 +1,20 @@
-class Auth {
+const Generic = require('./Generic.page');
+class Auth extends Generic {
+    constructor() {
+    super('./login')
+    }   
+
     get $email () { return $('input[type="email"]'); }
     get $password () { return $('input[type="password"]'); }
     get $signIn () { return $('button*=Sign in'); }
     get $errorMessages () { return $('.error-messages li'); }
     get $userName () { return $('input[placeholder="Username"]'); }
     get $registerEmail () { return $('input[placeholder="Email"]'); }
-    get $registerLink () { return $('[text-xs-center]a')};
+    //get $registerLink () { return $('[text-xs-center]a')};
     get $signUp () { return $('button*=Sign up'); }
 
-    login (email, password) {
+    
+    login ({email, password}) {
         this.$email.setValue(email);
         this.$password.setValue(password);
         this.$signIn.click();
@@ -25,7 +31,7 @@ class Auth {
             });
     }
 
-    register (username, email, password) {
+    register ({username, email, password}) {
         this.$userName.setValue(username);
         this.$registerEmail.setValue(email);
         this.$password.setValue(password);
@@ -44,4 +50,5 @@ class Auth {
     }
 
 }
+
 module.exports = Auth;
