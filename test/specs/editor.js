@@ -8,7 +8,15 @@ const { user1 } = require('../fixtures/users');
 const auth = new Auth();
 const editor = new Editor();
 const article = new Article();
-const chance = new Chance();
+
+if (!process.env.SEED) {
+    // store as a string since that's how the SEED environment variable is passed in
+    process.env.SEED = Math.random().toString();
+    }
+    console.log(
+    `ChanceJS Seed: ${process.env.SEED} - Pass in using 'SEED=${process.env.SEED}'`
+    );
+    const chance = new Chance(process.env.SEED);
 
 describe('Post Editor', function () {
     before(function () {
