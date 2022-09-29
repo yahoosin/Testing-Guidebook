@@ -10,19 +10,19 @@ class Auth extends Generic {
     get $errorMessages () { return $('.error-messages li'); }
     get $userName () { return $('input[placeholder="Username"]'); }
     get $registerEmail () { return $('input[placeholder="Email"]'); }
-    //get $registerLink () { return $('[text-xs-center]a')};
+    get $registerLink () { return $('[text-xs-center]a')};
     get $signUp () { return $('button*=Sign up'); }
 
     
-    login ({email, password}) {
-        this.$email.setValue(email);
-        this.$password.setValue(password);
-        this.$signIn.click();
+    async login ({email, password}) {
+        await this.$email.setValue(email);
+        await this.$password.setValue(password);
+        await this.$signIn.click();
 
-        browser.waitUntil(
-            () => {
-            const signInExists = this.$signIn.isExisting();
-            const errorExists = this.$errorMessages.isExisting();
+        await browser.waitUntil(
+            async () => {
+            const signInExists = await this.$signIn.isExisting();
+            const errorExists = await this.$errorMessages.isExisting();
             return !signInExists || errorExists;
             },
             {

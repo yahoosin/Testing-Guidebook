@@ -7,8 +7,8 @@ class Generic {
     // using the NodeJS URL utility
     this.url = new URL(path, browser.config.baseUrl);
     }
-    load() {
-    browser.url(this.path);
+    async load () {
+     await browser.url(this.path);
     }
 }
 module.exports = Generic;

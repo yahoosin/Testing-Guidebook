@@ -13,7 +13,7 @@ describe('Register Page', function () {
 
     it('should be register a new account', function () {
         //var timestamp = Date.now();
-        auth.register({, {email: user1.email, password: user1.password});
+        auth.register( {email: user1.email, password: user1.password});
         expect(auth.$errorMessages).not.toBeExisting();
         //console.log(timestamp);
     })

@@ -10,15 +10,15 @@ class Editor extends Generic {
     get $tags () { return $('[data-qa-id="editor-tags"]'); }
     get $publish () { return $('[data-qa-id="editor-publish"]'); }
 
-    submitArticle({ title, description, body, tags }) {
-        this.$title.setValue(title);
-        this.$description.setValue(description);
-        this.$body.setValue(body);
-        tags.forEach((tag) => {
-            this.$tags.setValue(tag);
-            this.$tags.keys('Enter');
+    async submitArticle({ title, description, body, tags }) {
+        await this.$title.setValue(title);
+        await this.$description.setValue(description);
+        await this.$body.setValue(body);
+        await tags.forEach(async (tag) => {
+            await this.$tags.setValue(tag);
+            await this.$tags.keys('Enter');
         });
-        this.$publish.click();
+        await this.$publish.click();
     }
 }
 module.exports = Editor;
