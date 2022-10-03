@@ -4,5 +4,6 @@ const users = {
     password: 'wdiodemo'
     }
     };
-    module.exports = users;
+    
+module.exports = users;
     
